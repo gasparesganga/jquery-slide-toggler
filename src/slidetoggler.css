@@ -1,0 +1,62 @@
+.slidetoggler, .slidetoggler:before, .slidetoggler:after,
+.slidetoggler *, .slidetoggler *:before, .slidetoggler *:after,
+.slidetoggler_top, .slidetoggler_top:before, .slidetoggler_top:after,
+.slidetoggler_top *, .slidetoggler_top *:before, .slidetoggler_top *:after,
+.slidetoggler_bottom, .slidetoggler_bottom:before, .slidetoggler_bottom:after,
+.slidetoggler_bottom *, .slidetoggler_bottom *:before, .slidetoggler_bottom *:after {
+	-moz-box-sizing		: border-box;
+	-webkit-box-sizing	: border-box;
+	box-sizing			: border-box;
+}
+.slidetoggler {
+	width				: 100%;
+	border				: 1px solid #c8c8c8;
+	border-top			: none;
+	font-family			: inherit;
+	font-size			: inherit;
+}
+.slidetoggler_top {
+	display				: table;
+	width				: 100%;
+	font-weight			: bold;
+	padding				: 5px;
+	color				: #404040;
+	background-color	: #f0f0f0;
+	border				: 1px solid #c8c8c8;
+	background-image	:         linear-gradient(top, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 51%, rgba(255,255,255,0.0) 100%);
+	background-image	:    -moz-linear-gradient(top, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 51%, rgba(255,255,255,0.0) 100%);
+	background-image	: -webkit-linear-gradient(top, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 51%, rgba(255,255,255,0.0) 100%);
+	background-image	:      -o-linear-gradient(top, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 51%, rgba(255,255,255,0.0) 100%);
+	background-image	:     -ms-linear-gradient(top, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 51%, rgba(255,255,255,0.0) 100%);	
+}
+.slidetoggler_top_toggler:hover {
+	background-color	: #f4f4f4;
+	cursor				: pointer;
+}
+.slidetoggler_top_toggler:active {
+	background-color	: #e6e6e6;
+}
+	.slidetoggler_top_title,
+	.slidetoggler_top_status {
+		display				: table-cell;
+		height				: 100%;
+		vertical-align		: middle;
+	}
+	.slidetoggler_top_title {
+		width				: 100%;
+	}
+	.slidetoggler_top_status {
+		white-space			: nowrap;
+		text-align			: center;
+	}
+		.slidetoggler_top_status_left {
+			padding-right		: 5px;
+		}
+		.slidetoggler_top_status_right {
+			padding-left		: 5px;
+		}
+.slidetoggler_bottom {
+	margin				: auto;
+	height				: 0px;
+	border				: none;
+}

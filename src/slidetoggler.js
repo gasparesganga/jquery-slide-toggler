@@ -1,7 +1,7 @@
 /***************************************************************************************************
 SlideToggler - A jQuery Plugin to turn an element into a collapsible sliding panel with a title
 	Author			: Gaspare Sganga
-	Version			: 1.0
+	Version			: 1.1
 	License			: MIT
 	Documentation	: http://gasparesganga.com/labs/jquery-slide-toggler
 ***************************************************************************************************/
@@ -26,20 +26,32 @@ SlideToggler - A jQuery Plugin to turn an element into a collapsible sliding pan
 	
 	$.fn.SlideToggler = function(options, customSpeed){
 		if (typeof options == "string") {
+			var action = options.toLowerCase();
+			
 			// Status
-			if (options == "status") {
+			if (action == "status") {
 				var $this = $(this).first();
-				return $this.is(":visible");
+				return $this.hasClass("slidetoggler") && $this.is(":visible");
 			}
 			
-			// Show/Hide
+			// Show/Hide/Remove
 			return this.each(function(){
-				var $this	= $(this);
+				var $this = $(this);
 				if (!$this.hasClass("slidetoggler")) return true;
 				var toggler	= $this.prev(".slidetoggler_top");
-				var action	= options.toLowerCase();
 				if (action == "hide" && $this.is(":visible"))	toggler.trigger("click", customSpeed);
 				if (action == "show" && !$this.is(":visible"))	toggler.trigger("click", customSpeed);
+				if (action == "remove") {
+					var bottom = $this.next(".slidetoggler_bottom");
+					$this
+						.removeClass("slidetoggler")
+						.removeData("SlideTogglerSettings")
+						.css("margin-top",		toggler.css("margin-top"))
+						.css("margin-bottom",	bottom.css("margin-bottom"))
+						.show();
+					toggler.remove();
+					bottom.remove();
+				}
 			});
 		}
 		
@@ -51,7 +63,7 @@ SlideToggler - A jQuery Plugin to turn an element into a collapsible sliding pan
 		return this.each(function(){
 			var $this = $(this);
 			if ($this.hasClass("slidetoggler")) return true;
-			$this.addClass("slidetoggler").data("settings", settings).show();
+			$this.addClass("slidetoggler").data("SlideTogglerSettings", settings).show();
 			
 			// Temporarly show $this and its wrappers if hidden to perform width calculations
 			var hiddenWrappers = $this.parents().filter(function(){
@@ -125,7 +137,7 @@ SlideToggler - A jQuery Plugin to turn an element into a collapsible sliding pan
 	function _SlideToggler_Click(event, customSpeed){
 		var toggler			= $(event.currentTarget);
 		var originalTarget	= toggler.next(".slidetoggler");
-		var settings		= originalTarget.data("settings");
+		var settings		= originalTarget.data("SlideTogglerSettings");
 		var status			= toggler.children(".slidetoggler_top_status");
 		var speed			= (customSpeed === undefined) ? settings.speed : customSpeed;
 		var eventName		= "";
